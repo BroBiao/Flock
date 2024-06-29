@@ -5,13 +5,13 @@ function install_miniconda() {
     if command -v conda &> /dev/null; then
         echo "Miniconda 已安装，conda 命令路径为: $(command -v conda)"
     else
-	   echo "Miniconda 未安装，开始安装"
+	echo "Miniconda 未安装，开始安装"
         mkdir -p ~/miniconda3
         wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
         bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
         rm -rf ~/miniconda3/miniconda.sh
         ~/miniconda3/bin/conda init bash
-	   source ~/miniconda3/bin/activate
+	source ~/miniconda3/bin/activate
     fi
 }
 
