@@ -25,7 +25,7 @@ function install_validator() {
         cd $HOME
         git clone https://github.com/FLock-io/llm-loss-validator.git
         cd llm-loss-validator
-        conda create -n llm-loss-validator python==3.10
+        conda create -n llm-loss-validator python==3.10 -y
         conda activate llm-loss-validator
         pip install -r requirements.txt
         echo "安装完成"
