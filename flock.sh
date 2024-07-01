@@ -22,6 +22,7 @@ function install_validator() {
     if test -e $HOME/llm-loss-validator; then
         echo "Validator已安装，无需再次安装"
     else
+	echo "Validator未安装，开始安装..."
         cd $HOME
         git clone https://github.com/FLock-io/llm-loss-validator.git
         cd llm-loss-validator
@@ -35,11 +36,9 @@ function install_validator() {
 # 运行Validator
 function run_validator() {
     cd $HOME/llm-loss-validator
-    CONDA_BASE=$(conda info --base)
-    source $CONDA_BASE/etc/profile.d/conda.sh
     conda activate llm-loss-validator
-    cd /src
-    CUDA_VISIBLE_DEVICES=0 bash start.sh --hf_token $1 --flock_api_key $2 --task_id $3 --validation_args_file validation_config.json.example --auto_clean_cache False
+    cd ./src
+    CUDA_VISIBLE_DEVICES=0 bash start.sh --hf_token $1 --flock_api_key $2 --task_id $3 --validation_args_file validation_config.json.example --auto_clean_cache True
 }
 
 # Validator守护程序
@@ -59,6 +58,7 @@ function install_training_node() {
     if test -e $HOME/testnet-training-node-quickstart; then
         echo "Training Node已安装，无需再次安装"
     else
+	echo "Training Node未安装，开始安装..."
         cd $HOME
         git clone https://github.com/FLock-io/testnet-training-node-quickstart.git
         cd testnet-training-node-quickstart
@@ -72,8 +72,6 @@ function install_training_node() {
 # 运行Training Node
 function run_training_node() {
     cd $HOME/testnet-training-node-quickstart
-    CONDA_BASE=$(conda info --base)
-    source $CONDA_BASE/etc/profile.d/conda.sh
     conda activate training-node
     TASK_ID=$1 FLOCK_API_KEY=$2 HF_TOKEN=$3 CUDA_VISIBLE_DEVICES=0 HF_USERNAME=$4 python full_automation.py
 }
@@ -91,6 +89,7 @@ function start_training_node_daemon() {
 
 # main menu
 function main_menu() {
+    source ~/miniconda3/bin/activate
     while true; do
 	clear;
 	echo "请选择要执行的操作："
