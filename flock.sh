@@ -38,7 +38,7 @@ function run_validator() {
     cd $HOME/llm-loss-validator
     conda activate llm-loss-validator
     cd ./src
-    CUDA_VISIBLE_DEVICES=0 bash start.sh --hf_token $1 --flock_api_key $2 --task_id $3 --validation_args_file validation_config.json.example --auto_clean_cache True
+    CUDA_VISIBLE_DEVICES=0 bash start.sh --hf_token $1 --flock_api_key $2 --task_id $3 --validation_args_file validation_config.json.example --auto_clean_cache True --lora_only True
 }
 
 # Validator守护程序
