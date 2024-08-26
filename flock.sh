@@ -82,9 +82,7 @@ function start_training_node_daemon() {
     read -p "请输入API KEY：" API_KEY
     read -p "请输入HuggingFace Token：" HF_TOKEN
     read -p "请输入HuggingFace用户名：" HF_USERNAME
-    while true; do
-        run_training_node $TASK_ID $API_KEY $HF_TOKEN $HF_USERNAME
-    done
+    run_training_node $TASK_ID $API_KEY $HF_TOKEN $HF_USERNAME
 }
 
 # main menu
