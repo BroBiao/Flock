@@ -14,7 +14,7 @@ per_device_train_batch_size=${per_device_train_batch_size:-"1"}
 read -p "请输入gradient_accumulation_steps范围（输入值为实际值对2取对数，用空格分隔）：" gradient_accumulation_steps_min gradient_accumulation_steps_max
 read -p "请输入num_train_epochs范围（输入值为实际值对2取对数，用空格分隔）：" num_train_epochs_min num_train_epochs_max
 read -p "请输入lora_rank范围（输入值为实际值对2取对数，用空格分隔）：" lora_rank_min lora_rank_max
-lora_dropouts=(0.1, 0.2, 0.3)
+lora_dropouts=(0.1 0.2 0.3)
 gradient_accumulation_steps_min=$(( 1 << gradient_accumulation_steps_min ))
 gradient_accumulation_steps_max=$(( 1 << gradient_accumulation_steps_max ))
 num_train_epochs_min=$(( 1 << num_train_epochs_min ))
@@ -23,6 +23,7 @@ lora_rank_min=$(( 1 << lora_rank_min ))
 lora_rank_max=$(( 1 << lora_rank_max ))
 
 
+source ~/miniconda3/bin/activate
 cd $HOME/testnet-training-node-quickstart
 conda activate training-node
 FILE="full_automation.py"
@@ -43,7 +44,7 @@ for (( gradient_accumulation_steps=$gradient_accumulation_steps_min; gradient_ac
 	    for (( lora_alpha=$lora_alpha_min; lora_alpha<=$lora_alpha_max; lora_alpha*=2 )); do
 		for lora_dropout in "${lora_dropouts[@]}"; do
 	            cat > training_args.yaml << EOF
-$base_model
+$base_model:
   per_device_train_batch_size: $per_device_train_batch_size
   gradient_accumulation_steps: $gradient_accumulation_steps
   num_train_epochs: $num_train_epochs
