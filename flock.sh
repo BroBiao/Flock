@@ -82,7 +82,35 @@ function start_training_node_daemon() {
     read -p "请输入API KEY：" API_KEY
     read -p "请输入HuggingFace Token：" HF_TOKEN
     read -p "请输入HuggingFace用户名：" HF_USERNAME
-    run_training_node $TASK_ID $API_KEY $HF_TOKEN $HF_USERNAME
+    while true; do
+        read -p "请输入基础模型名称（默认Qwen/Qwen1.5-7B）：" base_model
+        base_model=${base_model:-"Qwen/Qwen1.5-7B"}
+        read -p "请输入per_device_train_batch_size（默认1）：" per_device_train_batch_size
+        per_device_train_batch_size=${per_device_train_batch_size:-"1"}
+        read -p "请输入gradient_accumulation_steps（默认8）：" gradient_accumulation_steps
+        gradient_accumulation_steps=${gradient_accumulation_steps:-"8"}
+        read -p "请输入num_train_epochs（默认1）：" num_train_epochs
+        num_train_epochs=${num_train_epochs:-"1"}
+        read -p "请输入lora_rank（默认4）：" lora_rank
+        lora_rank=${lora_rank:-"4"}
+        read -p "请输入lora_alpha（默认8）：" lora_alpha
+        lora_alpha=${lora_alpha:-"8"}
+        read -p "请输入lora_dropout（默认0.1）：" lora_dropout
+        lora_dropout=${lora_dropout:-"0.1"}
+        cat > $HOME/testnet-training-node-quickstart/training_args.yaml << EOF
+$base_model:
+  per_device_train_batch_size: $per_device_train_batch_size
+  gradient_accumulation_steps: $gradient_accumulation_steps
+  num_train_epochs: $num_train_epochs
+  lora_rank: $lora_rank
+  lora_alpha: $lora_alpha
+  lora_dropout: $lora_dropout
+EOF
+        run_training_node $TASK_ID $API_KEY $HF_TOKEN $HF_USERNAME
+        echo "本次训练参数："
+        cat $HOME/testnet-training-node-quickstart/training_args.yaml
+        echo "请调整训练参数开始下一次训练："
+    done
 }
 
 # main menu
