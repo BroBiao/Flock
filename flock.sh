@@ -66,7 +66,7 @@ function install_training_node() {
         conda activate training-node
         pip install -r requirements.txt
         cd utils
-        wget -O constants.py https://github.com/BroBiao/Flock/blob/main/constants.py
+        wget -O constants.py https://github.com/BroBiao/Flock/raw/main/constants.py
         echo "安装完成"
     fi
 }
