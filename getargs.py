@@ -7,11 +7,16 @@ import os
 import requests
 import json
 
-if len(sys.argv) != 2:
-    print("Usage: python3 getargs.py hf_repo_name")
-    sys.exit(1)
-else:
+if len(sys.argv) == 2:
     hf_repo_name = sys.argv[1]
+    branch = 'main'
+elif len(sys.argv) == 3:
+    hf_repo_name = sys.argv[1]
+    branch = sys.argv[2]
+else:
+    print("Usage: python3 getargs.py hf_repo_name {branch}")
+    sys.exit(1)
+    
 
 def download_file(file_url, file_path):
     response = requests.get(file_url)
@@ -23,11 +28,11 @@ def download_file(file_url, file_path):
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
 
-training_args_url = f'https://huggingface.co/{hf_repo_name}/resolve/main/training_args.bin'
+training_args_url = f'https://huggingface.co/{hf_repo_name}/resolve/{branch}/training_args.bin'
 training_args_path = os.path.join(dir_path, "training_args.bin")
 download_file(training_args_url, training_args_path)
 
-lora_args_url = f'https://huggingface.co/{hf_repo_name}/raw/main/adapter_config.json'
+lora_args_url = f'https://huggingface.co/{hf_repo_name}/raw/{branch}/adapter_config.json'
 lora_args_path = os.path.join(dir_path, 'lora_args.json')
 download_file(lora_args_url, lora_args_path)
 
