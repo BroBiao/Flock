@@ -2,6 +2,9 @@ qwen_template = {
     "system_format": "<|im_start|>system\n{content}<|im_end|>\n",
     "user_format": "<|im_start|>user\n{content}<|im_end|>\n<|im_start|>assistant\n",
     "assistant_format": "{content}<|im_end|>\n",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "<|im_start|>tool\n{content}<|im_end|>\n<|im_start|>assistant\n",
     "system": "You are a helpful assistant.",
 }
 
@@ -9,6 +12,9 @@ yi_template = {
     "system_format": "<|im_start|>system\n{content}<|im_end|>\n",
     "user_format": "<|im_start|>user\n{content}<|im_end|>\n<|im_start|>assistant\n",
     "assistant_format": "{content}<|im_end|>\n",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "<|im_start|>tool\n{content}<|im_end|>\n<|im_start|>assistant\n",
     "system": None,
 }
 
@@ -16,6 +22,9 @@ zephyr_template = {
     "system_format": "<|system|>\n{content}</s>",
     "user_format": "<|user|>\n{content}</s>\n<|assistant|>\n",
     "assistant_format": "{content}</s>\n",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "<|tool|>\n{content}</s>\n<|assistant|>\n",
     "system": None,
 }
 
@@ -23,6 +32,9 @@ mistral_template = {
     "system_format": "<s>",
     "user_format": "[INST]{content}[/INST]",
     "assistant_format": "{content}</s>",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "[INST]{content}[/INST]",
     "system": "",
 }
 
@@ -30,6 +42,9 @@ mixtral_template = {
     "system_format": "<s>",
     "user_format": "[INST]{content}[/INST]",
     "assistant_format": "{content}</s>",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "[INST]{content}[/INST]",
     "system": "",
 }
 
@@ -37,6 +52,9 @@ llama2_template = {
     "system_format": "<<SYS>>\n{content}\n<</SYS>>\n\n",
     "user_format": "[INST]{content}[/INST]",
     "assistant_format": "{content} </s>",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "[INST]{content}[/INST]",
     "system": "You are a helpful, respectful and honest assistant. "
     "Always answer as helpfully as possible, while being safe. "
     "Your answers should not include any harmful, unethical, "
@@ -51,6 +69,9 @@ gemma_template = {
     "system_format": "<bos>",
     "user_format": "<start_of_turn>user\n{content}<end_of_turn>\n<start_of_turn>model\n",
     "assistant_format": "{content}<eos>\n",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "<start_of_turn>tool\n{content}<end_of_turn>\n<start_of_turn>model\n",
     "system": "",
 }
 
@@ -58,6 +79,9 @@ llama3_template = {
     "system_format": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{content}<|eot_id|>",
     "user_format": "<|start_header_id|>user<|end_header_id|>\n\n{content}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
     "assistant_format": "{content}<|eot_id|>",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "<|start_header_id|>tool<|end_header_id|>\n\n{content}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
     "system": None,
 }
 
@@ -65,6 +89,9 @@ phi3_template = {
     "system_format": None,
     "user_format": "<|user|>\n{content}<|end|>\n<|assistant|>",
     "assistant_format": "{content}<|end|>\n",
+    "tool_format": "{content}",
+    "function_format": "{content}",
+    "observation_format": "<|tool|>\n{content}<|end|>\n<|assistant|>",
     "system": None,
 }
 
